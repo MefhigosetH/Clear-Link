@@ -40,10 +40,43 @@ function initNavBar() {
 
 
 /*
+* Clear the user input.
+*
+* @return None
+*/
+function clearUserInput() {
+    urlField.value = '';
+
+    console.log('Form cleared');
+}
+
+
+/*
+* Fire a scan to the Link entered by user.
+*
+* @return None
+*/
+function scanLink() {
+    link = urlField.value;
+    console.log('Scan: ', link);
+}
+
+
+
+/*
 * Init the app when document is loaded.
 */
 document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize NavBar
     initNavBar();
+
+    // Init user controls
+    var urlField = document.getElementById("urlField");
+
+    var scanButton = document.getElementById("scanBtn");
+    scanButton.onclick = scanLink;
+
+    var clearButton = document.getElementById("clearBtn");
+    clearButton.onclick = clearUserInput;
 });
