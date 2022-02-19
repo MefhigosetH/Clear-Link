@@ -46,9 +46,43 @@ function initNavBar() {
 */
 function clearUserInput() {
     urlField.value = '';
+    clearHelp();
 
     console.log('Form cleared');
 }
+
+
+
+/*
+* Show a help text to the user.
+*
+* @param level string The level of message (is-danger || is-success)
+* @param message string The message
+* @return None
+*/
+function showHelp( level, message ) {
+    urlField.className = 'input ' + level;
+    helpText.className = 'help ' + level;
+    helpText.innerText = message;
+    helpText.style.display = 'block';
+
+    console.log('('+level+') ', message);
+}
+
+
+
+/*
+* Clear the help message.
+*
+* @return None
+*/
+function clearHelp() {
+    urlField.className = 'input';
+    helpText.className = 'help';
+    helpText.innerText = '';
+    helpText.style.display = 'none';
+}
+
 
 
 /*
@@ -57,8 +91,29 @@ function clearUserInput() {
 * @return None
 */
 function scanLink() {
+    clearHelp();
     link = urlField.value;
-    console.log('Scan: ', link);
+
+    // Trow error if the URL is empty
+    if( link == '' ) {
+        showHelp('is-danger', 'Error: El campo LINK esta vacio.');
+        return false;
+    }
+
+    // Trow error if the protocol is empty
+    if( link.startsWith('http') === false ) {
+        showHelp('is-danger', 'Error: The link need to start with "http" or "https".');
+        return false;
+    }
+
+    try {
+        const url = new URL(link);
+        console.log(url);
+    }
+    catch( error ) {
+        showHelp('is-danger', error);
+    }
+
 }
 
 
@@ -73,6 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Init user controls
     var urlField = document.getElementById("urlField");
+
+    var helpText = document.getElementById("helpText");
+    helpText.style.display = 'none';
 
     var scanButton = document.getElementById("scanBtn");
     scanButton.onclick = scanLink;
