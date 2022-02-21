@@ -1,0 +1,3 @@
+#!/bin/bash
+#
+python3 -m pipenv run docker-compose up -d
