@@ -30,7 +30,7 @@ export default class Navbar extends React.Component {
         <div className="navbar-brand">
           <a className="navbar-item" href="/">ClearLink</a>
 
-          <button role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="primaryNavbar">
+          <button role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="primaryNavbar" href="#">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
