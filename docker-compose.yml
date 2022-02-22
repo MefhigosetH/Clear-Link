@@ -1,0 +1,19 @@
+version: "3"
+
+networks:
+  lan:
+
+services:
+  clearlink:
+    image: node:16-alpine
+    container_name: clearlink
+    working_dir: /tmp/
+    command: ["npm", "start"]
+    environment:
+      NODE_ENV: development
+    networks:
+      - lan
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app:/tmp/
